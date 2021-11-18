@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ShipperController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/shippers', [ShipperController::class, 'index']);
+Route::get('/shippers/search/{name}', [ShipperController::class, 'search']);
+Route::post('/shippers', [ShipperController::class, 'store']);
+Route::put('/shippers/{id}', [ShipperController::class, 'update']);
+Route::delete('/shippers/{id}', [ShipperController::class, 'destroy']);
+Route::get('/shippers/contacts/{id}', [ShipperController::class, 'show']);
+
+Route::get('/contacts', [ContactController::class, 'index']);
+
